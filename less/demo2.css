@@ -1,0 +1,49 @@
+header h1 {
+  font-size: 26px;
+  font-weight: bold;
+}
+header h1 a {
+  color: #f36;
+  text-decoration: none;
+}
+header h1 a:hover {
+  color: #63f;
+  text-decoration: underline;
+}
+header p {
+  font-size: 12px;
+}
+header p.slogan {
+  color: #f00;
+}
+.font-size-64px {
+  font-size: 64px;
+}
+.font-size-32px {
+  font-size: 32px;
+}
+.font-size-18px {
+  font-size: 18px;
+}
+.font-size-17px {
+  font-size: 17px;
+}
+.font-size-16px {
+  font-size: 16px;
+}
+.font-size-15px {
+  font-size: 15px;
+}
+.font-size-14px {
+  font-size: 14px;
+}
+.font-size-13px {
+  font-size: 13px;
+}
+.font-size-12px {
+  font-size: 12px;
+}
+.font-weight-500 {
+  font-weight: 500;
+}
+/*# sourceMappingURL=demo2.css.map */

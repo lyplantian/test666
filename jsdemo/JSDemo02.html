@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    // 自定义构造函数---> 实例化对象
+    function Person(name, age, sex) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.eat = function () {
+            console.log("chi-shi");
+        }
+    }
+
+    //构造函数---->创建对象
+    var per = new Person("xiaosu", 38, "women");
+    per.eat();//方法
+    // 实例对象是通过构造函数来创建的
+    console.log(per.constructor === Person);
+    console.log(per.__proto__.constructor === Person);
+    console.log(per.__proto__.constructor === Person.prototype.constructor);
+
+</script>
+</body>
+</html>

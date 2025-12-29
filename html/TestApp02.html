@@ -1,0 +1,433 @@
+<!doctype html>
+<html><head>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+            <title>WebViewJavascriptBridge</title>
+            <script type="text/javascript" src="../js/jssdk.js"></script>
+            <style type='text/css'>
+                html { font-family:Helvetica; color:#222; }
+                h1 { color:steelblue; font-size:24px; margin-top:24px; }
+                button { margin:0 3px 10px; font-size:12px; }
+                .logLine { 
+					border-bottom:1px solid #ccc; 
+					padding:4px 2px; 
+					font-family:courier; 
+					font-size:11px; 
+				}
+            </style>
+</head><body>
+    <h1>WebViewJavascriptBridge Demo</h1>
+    <div id='buttons'></div> <div id='log'></div>
+    <script>
+        window.onerror = function(err) {
+            //log('window.onerror: ' + err)
+        }
+    
+    var uniqueId = 1
+    function log(message, data) {
+        var log = document.getElementById('log')
+        var el = document.createElement('div')
+        el.className = 'logLine'
+        el.innerHTML = uniqueId++ + '. ' + message + ':<br/>' + JSON.stringify(data)
+        if (log.children.length) { log.insertBefore(el, log.children[0]) }
+        else { log.appendChild(el) }
+    }
+    
+    var alertButton = document.getElementById('buttons').appendChild(document.createElement('button'))
+    alertButton.innerHTML = 'alert'
+    alertButton.onclick = function(e) {
+        e.preventDefault()
+        dd.device.notification.confirm({
+	         title: "提示", //标题
+	         message:"你爱我吗",
+	         buttonLabels: ["测试一下"],
+	         onSuccess : function(data) {
+	           log('actionSheet success, user confirm at index', data.buttonIndex)
+	         },
+	         onFail : function(err) {
+	           log('actionSheet called failed', err) },
+	         onCancel : function(err) { log('user canceled', err) }
+	        })
+    }
+
+    
+    //提示确认框
+    var confirm = document.getElementById('buttons').appendChild(document.createElement('button'))
+    confirm.innerHTML = 'confirm'
+    confirm.onclick = function(e) {
+        e.preventDefault()
+        dd.device.notification.confirm({
+                                       title: "提示", //标题
+                                       message:"你爱我吗",
+                                       buttonLabels: ["爱","不爱"],
+                                       onSuccess : function(data) {
+                                       log('actionSheet success, user confirm at index', data.buttonIndex)
+                                       },
+                                       onFail : function(err) {
+                                       log('actionSheet called failed', err) },
+                                       onCancel : function(err) { log('user canceled', err) }
+                                       })
+    }
+    
+    //功能2: 获取UUID
+    var uuidButton = document.getElementById('buttons').appendChild(document.createElement('button'))
+    uuidButton.innerHTML = 'getUUID'
+    uuidButton.onclick = function(e) {
+        e.preventDefault()
+        dd.device.base.getUUID({
+                               onSuccess : function(data) {
+                               log('getUUID success', data.uuid)
+                               },
+                               onFail : function(err) { log('getUUID called failed', err) }
+                               });
+    }
+    
+    document.body.appendChild(document.createElement('br'))
+    
+    //功能3: actionSheet 弹窗
+    var actionSheetButton = document.getElementById('buttons').appendChild(document.createElement('button'))
+    actionSheetButton.innerHTML = 'actionSheet'
+    actionSheetButton.onclick = function(e) {
+        e.preventDefault()
+        dd.device.notification.actionSheet({
+                                           title: "谁是最棒哒？", //标题
+                                           cancelButton: '取消', //取消按钮文本
+                                           otherButtons: ["孙悟空","猪八戒","唐僧","沙和尚"],
+                                           onSuccess : function(data) {
+                                           log('actionSheet success, user confirm at index', data.buttonIndex)
+                                           },
+                                           onFail : function(err) { log('actionSheet called failed', err) },
+                                           onCancel : function(err) { log('user canceled', err) }
+                                           })
+    }
+    
+    document.body.appendChild(document.createElement('br'))
+    
+    // vibrate 震动
+    var uuidButton = document.getElementById('buttons').appendChild(document.createElement('button'))
+    uuidButton.innerHTML = 'vibrate'
+    uuidButton.onclick = function(e) {
+        e.preventDefault()
+        dd.device.notification.vibrate({
+                                       onSuccess : function(data) {
+                                       // log('vibrate success, user confirm at index', data.buttonIndex)
+                                       },
+                                       onFail : function(err) { log('vibrate called failed', err) },
+                                       })
+    }
+    
+    //新增功能：device.notification.prompt
+    var actionSheetButton = document.getElementById('buttons').appendChild(document.createElement('button'))
+    actionSheetButton.innerHTML = 'prompt'
+    actionSheetButton.onclick = function(e) {
+        e.preventDefault()
+        dd.device.notification.prompt({
+                                      message: "再说一遍？",
+                                      title: "提示", //标题
+                                      cancelButton: '继续', //取消按钮文本
+                                      otherButtons: '不玩了',
+                                      onSuccess : function(data) {
+                                      log('actionSheet success, user confirm at index', data)
+                                      },
+                                      onFail : function(err) {
+                                      log('actionSheet called failed', err) },
+                                      onCancel : function(err) { log('user canceled', err) }
+                                      })
+    }
+    //显示进度条
+    var actionSheetButton = document.getElementById('buttons').appendChild(document.createElement('button'))
+    actionSheetButton.innerHTML = 'showPreloader'
+    actionSheetButton.onclick = function(e) {
+        e.preventDefault()
+        dd.device.notification.showPreloader({
+                                             text: "使劲加载中..", //loading显示的字符，空表示不显示文字
+                                             showIcon: true, //是否显示icon，默认true
+
+                                             onSuccess : function(data) {
+                                             log('showPreloader success, user confirm at index', data.buttonIndex)
+                                             },
+                                             onFail : function(err) {
+                                             log('showPreloader called failed', err) },
+                                             onCancel : function(err) { log('user canceled', err) }
+                                             })
+    }
+    //隐藏进度条
+    var actionSheetButton = document.getElementById('buttons').appendChild(document.createElement('button'))
+    actionSheetButton.innerHTML = 'hidePreloader'
+    actionSheetButton.onclick = function(e) {
+        e.preventDefault()
+        dd.device.notification.hidePreloader({
+                                             onSuccess : function(data) {
+                                             log('hidePreloader success, user confirm at index', data.buttonIndex)
+                                             },
+                                             onFail : function(err) {
+                                             log('hidePreloader called failed', err) },
+                                             onCancel : function(err) { log('user canceled', err) }
+                                             })
+    }
+    //设置导航栏标题
+    var navigationTitleButton = document.getElementById('buttons').appendChild(document.createElement('button'))
+    navigationTitleButton.innerHTML = 'setTitle'
+    navigationTitleButton.onclick = function(e) {
+        e.preventDefault()
+        dd.biz.navigation.setTitle({
+                                   title : '邮箱正文',//控制标题文本，空表示显示默认文本
+                                   onSuccess : function(result) {
+                                   log('setTitle Success, user confirm at Index ',data.buttonIndex)
+                                   },
+                                   onFail : function(err) {
+                                   log('=======setTitle Failed=======:',err.error)
+                                   }
+                                   });
+    }
+    
+    //关闭浏览器
+    var closeButton = document.getElementById('buttons').appendChild(document.createElement('button'))
+    closeButton.innerHTML = 'close'
+    closeButton.onclick = function(e) {
+        e.preventDefault()
+        dd.biz.navigation.close({
+                                onSuccess : function(result) {
+                                },
+                                onFail : function(err) {}
+                                })
+    }
+    
+    //设置导航栏右侧单个按钮 
+    var navigationRightSingleButton = document.getElementById('buttons').appendChild(document.createElement('button'))
+    navigationRightSingleButton.innerHTML = 'setRight'
+    navigationRightSingleButton.onclick = function(e) {
+        e.preventDefault()
+        dd.biz.navigation.setRight({
+                                   show: true,//控制按钮显示， true 显示， false 隐藏， 默认true
+                                   control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
+                                   text: '分享',//控制显示文本，空字符串表示显示默认文本
+                                   arg:{'titleStr':'浙江政务','contentStr':'分享测试','imageStr':'图片路径','shareUrlStr':'分享链接'},
+                                   onSuccess : function(data) {
+                                   //如果control为true，则onSuccess将在发生按钮点击事件被回调
+                                   log('success',data)
+                                   },
+                                   onFail : function(err) {}
+                                   });
+    }
+    
+    //电话
+    var telephoneButton = document.getElementById('buttons').appendChild(document.createElement('button'))
+    telephoneButton.innerHTML = 'call'
+    telephoneButton.onclick = function(e) {
+        e.preventDefault()
+        dd.biz.telephone.call({
+                              corpId: '15990020223', //企业id
+                              onSuccess : function() {},
+                              onFail : function() {}
+                              })
+    }
+    
+    //短信
+    var sms = document.getElementById('buttons').appendChild(document.createElement('button'))
+    sms.innerHTML = 'sms'
+    sms.onclick = function(e) {
+        e.preventDefault()
+        dd.biz.telephone.sms({
+                              text:'1111',//内容
+                              phoneNumber: '15990020223', //电话号码
+                              onSuccess : function() {},
+                              onFail : function() {}
+                              })
+    }
+    
+    //扫码
+    var scanButton = document.getElementById('buttons').appendChild(document.createElement('button'))
+    scanButton.innerHTML = 'scan'
+    scanButton.onclick = function(e) {
+        e.preventDefault()
+        dd.biz.util.scan({
+                         type: 'qrCode',//type为qrCode或者barCode
+                         onSuccess: function(data) {
+                         // data结构{ 'text': String}
+                         log('success scan result is:',data.text)
+                         },
+                         onFail : function(err) {
+                         log('=======scan Failed=======:',err.error)
+                         }
+                         })
+                         
+    }
+    
+    //分享
+    var scanButton = document.getElementById('buttons').appendChild(document.createElement('button'))
+    scanButton.innerHTML = 'share'
+    scanButton.onclick = function(e) {
+        e.preventDefault()
+        dd.biz.util.share({
+                          arg:{'titleStr':'测试标题','contentStr':'测试内容','imageStr':'http://zwfw-app.oss-cn-hangzhou.aliyuncs.com/20170710102605919_33.png','shareUrlStr':'https://www.baidu.com/'},
+                         onSuccess: function(data) {
+                         // data结构{ 'text': String}
+                         log('success share ',data)
+                          
+                         },
+                         onFail : function(err) {
+                         }
+                         })
+                         
+    }
+
+    //获取当前网络状况
+    var  getNetworkTypeButton = document.getElementById('buttons').appendChild(document. createElement('button'))
+    getNetworkTypeButton.innerHTML = 'getNetworkType'
+    getNetworkTypeButton.onclick = function(e) {
+        e.preventDefault()
+        dd.device.connection.getNetworkType({
+                                            onSuccess : function(data) {
+                                            log(data.network)
+                                            },
+                                            onFail : function(err) {}
+                                            });
+    }
+    
+    var selectLocalCity = document.getElementById('buttons').appendChild(document.createElement('button'))
+    selectLocalCity.innerHTML = 'selectLocalCity'
+    selectLocalCity.onclick = function(e) {
+        e.preventDefault()
+        dd.biz.util.selectLocalCity({
+                          onSuccess : function(result) {
+                          log('getLocation success', result)
+                          },
+                          onFail : function(err) {
+                          }
+                          });
+    }
+    
+    var selectLocalCity = document.getElementById('buttons').appendChild(document.createElement('button'))
+    selectLocalCity.innerHTML = 'selectCity'
+    selectLocalCity.onclick = function(e) {
+        e.preventDefault()
+        dd.biz.util.selectCity({
+                          onSuccess : function(result) {
+                          log('getLocation success', result)
+                          },
+                          onFail : function(err) {
+                          }
+                          });
+    }
+    
+    //地图功能: 获取经纬度
+    var uuidButton = document.getElementById('buttons').appendChild(document.createElement('button'))
+    uuidButton.innerHTML = 'getLocation'
+    uuidButton.onclick = function(e) {
+        e.preventDefault()
+        dd.device.location.get({
+                               onSuccess : function(data) {
+                               log('getLocation success', data)
+                               },
+                               onFail : function(err) { log('getLocation called failed', err) }
+                               });
+    }
+    
+    var chooseImg = document.getElementById('buttons').appendChild(document.createElement('button'))
+    chooseImg.innerHTML = 'chooseImage'
+    chooseImg.onclick = function(e) {
+        e.preventDefault()
+        
+        dd.device.notification.chooseImage({
+                              cancelButton: '取消', //取消按钮文本
+                              otherButtons: ["拍照","相册"],
+                              onSuccess: function(data) {
+                              log('imgUrl', data);
+                              
+                              },
+                              onFail: function(err) {
+                              log('img: ', err);
+                              
+                              }
+                              });
+    }
+    
+    var toast = document.getElementById('buttons').appendChild(document.createElement('button'))
+    toast.innerHTML = 'toast'
+    toast.onclick = function(e) {
+        e.preventDefault()
+        dd.device.notification.toast({
+                                     message : '测试一下',
+                                     duration:'3',
+                                     delay:'0',
+                                     onSuccess : function() {
+                                     log('toast success')},
+                                     onFail : function() {
+                                     log('toast failed') },
+                                     })
+    }
+    
+    var setItem = document.getElementById('buttons').appendChild(document.createElement('button'))
+    setItem.innerHTML = 'setItem'
+    setItem.onclick = function(e) {
+        e.preventDefault()
+        dd.util.localStorage.setItem ({
+                                      onSuccess : function(data) {
+                                      log('success',data)
+                                      },
+                                      OnFail : function(err) {
+                                      log('fail',err)
+                                      }
+                                      })
+    }
+    
+    var getItem = document.getElementById('buttons').appendChild(document.createElement('button'))
+    getItem.innerHTML = 'getItem'
+    getItem.onclick = function(e) {
+        e.preventDefault()
+        dd.util.localStorage.getItem ({
+                                      onSuccess : function(data) {
+                                      log('success',data)
+                                      },
+                                      OnFail : function(err) {
+                                      log('fail',err)
+                                      }
+                                      })
+    }
+    
+    var removeItem = document.getElementById('buttons').appendChild(document.createElement('button'))
+    removeItem.innerHTML = 'removeItem'
+    removeItem.onclick = function(e) {
+        e.preventDefault()
+        dd.util.localStorage.removeItem ({
+                                         onSuccess : function(data) {
+                                         log('success',data)
+                                         },
+                                         OnFail : function(err) {
+                                         log('fail',err)
+                                         }
+                                         })
+    }
+    
+    //UI控件：webView－启用上下滚动
+    var setColors = document.getElementById('buttons').appendChild(document.createElement('button'))
+    setColors.innerHTML = 'BounceEnable'
+    setColors.onclick = function(e) {
+        e.preventDefault()
+        dd.ui.webViewBounce.enable({
+                                   
+                                   onSuccess: function(data) {
+                                   },
+                                   onFail: function() {
+                                   }
+                                   })
+    }
+    //UI控件：webViewBounce－禁用上下滚动
+    var setColors = document.getElementById('buttons').appendChild(document.createElement('button'))
+    setColors.innerHTML = 'BounceDisable'
+    setColors.onclick = function(e) {
+        e.preventDefault()
+        dd.ui.webViewBounce.disable({
+                                    
+                                    onSuccess: function(data) {
+                                    },
+                                    onFail: function() {
+                                    }
+                                    })
+    }
+
+
+        </script>
+</body></html>
+

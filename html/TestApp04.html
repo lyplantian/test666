@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,
+			maximum-scale=1, minimum-scale=1, user-scalable=0, minimal-ui">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta content="ie=edge" http-equiv="X-UA-Compatible">
+
+		<title>Test22</title>
+
+		<style>
+			a {
+				text-decoration: none;
+				font-size: 20px;
+			}
+
+			a:link {
+				/* 未访问链接*/
+				color: gray;
+			}
+
+			a:visited {
+				/* 已访问链接 */
+				color: gray;
+			}
+
+			a:hover {
+				/* 鼠标移动到链接上 */
+				color: gray;
+			}
+
+			a:active {
+				/* 鼠标点击时 */
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+				color: red;
+			}
+
+			.div_1 {
+				background: #00FFFF;
+				display: inline-block;
+				width: 100px;
+				height: 100px;
+				position: relative;
+			}
+
+			.div_2 {
+				margin: 0 auto;
+				display: block;
+				text-align: center;
+				background: lightgrey;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				color: black;
+			}
+
+			.div_2 div {
+				display: block;
+			}
+
+			.div_2:active {
+				background: dimgray;
+				color: white;
+			}
+			
+			
+			
+		</style>
+
+	</head>
+	<body>
+		
+		<a id="a_index" href="#">
+			<div>666</div>
+			<div>666</div>
+			<div>666</div>
+			<div>666</div>
+		</a>
+
+		<div class="div_1">
+			<div class="div_2" onclick="getInfo()">
+				<div>111</div>
+				<div>222</div>
+				<div>333</div>
+			</div>
+		</div>
+		
+		<div>
+			
+		</div>
+		
+		<script>
+
+			function getInfo() {
+				
+			}
+			
+		</script>
+		
+	</body>
+</html>

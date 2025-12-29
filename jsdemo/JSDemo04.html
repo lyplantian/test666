@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/common.js"></script>
+    <style>
+        #dv {
+            width: 300px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="显示效果" id="btn"/>
+    <div id="dv"></div>
+    <script>
+        function ChangeStyle(btnObj, dvObj, json) {
+            this.btnObj = btnObj;
+            this.dvObj = dvObj;
+            this.json = json;
+        }
+
+        ChangeStyle.prototype.init = function () {
+            var that = this;
+            this.btnObj.onclick = function () {
+                for (var key in that.json) {
+                    that.dvObj.style[key] = that.json[key];
+                }
+            }
+        };
+
+        // 实例化对象
+        var json = {
+            "width":"500px",
+            "height":"600px",
+            "background":"blue",
+            "opacity":"0.2"
+        };
+        var cs = new ChangeStyle(my$("btn"),my$("dv"),json);
+        cs.init();
+
+    </script>
+</body>
+</html>
+<!--
+ 构造函数可以实例化对象
+ 构造函数中有一个属性叫prototype，是构造函数的原型对象
+ 构造函数的原型对象(prototype)中有一个constructor构造器，这个构造器指向的就是自己所在的原型对象所在的构造函数
+ 实例对象的原型对象(__proto__)指向的是该构造函数的原型对象
+ 构造函数的原型对象(prototype)中的方法是可以被实例对象直接访问的
+
+-->

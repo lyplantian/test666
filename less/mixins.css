@@ -1,0 +1,15 @@
+@charset "UTF-8";
+/*混入*/
+/*组合样式的例子*/
+/*类混入*/
+/*函数混入*/
+/*定义函数*/
+/*定义函数包含参数*/
+.w50-f_left {
+  width: 50%;
+  float: right;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+}
+/*# sourceMappingURL=mixins.css.map */

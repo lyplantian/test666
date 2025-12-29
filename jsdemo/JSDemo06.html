@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <script>
+       /* (function (形参) {
+            var num = 10; //局部变量
+            console.log("哈哈");
+        })(实参);*/
+
+      /* (function (win) {
+           var num = 10; //局部变量
+           win.number = num;
+       })(window);
+       console.log(number);*/
+
+       (function (window) {
+           //产生随机数的构造函数
+           function Random() {
+
+           }
+           Random.prototype.getRandom = function (min,max) {
+                return Math.floor(Math.random()*(max-min) + min);
+           };
+
+           window.Random = Random;
+       })(window);
+
+       var rm = new Random();
+       for (let i = 0; i < 10; i++) {
+           console.log(rm.getRandom(10,20));
+       }
+
+
+    </script>
+</body>
+</html>

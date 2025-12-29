@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function Student(name, age, sex) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+    }
+
+    Student.prototype = {
+        // 必须手动修改构造器的指向
+        constructor:Student,
+        height: '188',
+        weight: '55',
+        study: function () {
+
+        },
+        eat: function () {
+
+        },
+    };
+
+    var stu = new Student("段飞","20","man");
+    stu.eat();
+    stu.study();
+    console.dir(Student);
+
+
+    Array.prototype.mySort = function () {
+
+    };
+
+
+
+</script>
+</body>
+</html>

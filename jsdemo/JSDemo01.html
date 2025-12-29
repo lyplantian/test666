@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--
+        对象：特指的某个事物，具有属性和方法(一组无须的属性的集合)
+        特征 ----》属性
+        行为 ----》方法
+    -->
+</head>
+<body>
+
+    <script>
+        // 创建对象的三种方式
+        //1.字面量的方式
+        //2.调用系统的构造函数
+        //3.自定义构造函数的方式
+        var per1 = {
+            name:'kakaxi',
+            age:20,
+            sex:"man",
+            eat:function () {
+
+            },
+            readBook:function () {
+
+            }
+        };
+
+        var per2 = new Object();
+        per2.name = "dashewan";
+        per2.age = 30;
+        per2.sex = "man";
+        per2.eat = function () {
+
+        };
+        per2.play = function () {
+
+        };
+        //自定义构造函数
+        function Person(name,age,sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            this.play = function () {
+                console.log("打游戏")
+            };
+        }
+        // 创建对象---> 实例化一个对象，同时对属性进行初始化
+        var person = new Person("xiaohong",18,"women");
+        /*
+            1.开辟空间存储对象
+            2.把this设置为当前的对象
+            3.设置属性和方法
+            4.把this对象返回
+         */
+        console.log(person instanceof Person);
+        person.play();
+
+
+    </script>
+</body>
+</html>

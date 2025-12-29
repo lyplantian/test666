@@ -1,0 +1,49 @@
+/*设置 HTML 文档的背景色：*/
+:root {
+  color: #00FFFF;
+}
+/* 边距样式配置 */
+.margin-top-4px {
+  margin-top: 4px;
+}
+/* 底部标签栏图标样式配置 */
+i.tab-home {
+  width: 32px;
+  height: 32px;
+  background-image: url("../images/home.png");
+}
+.tab-link-active i.tab-home {
+  background-image: url("../images/home-active.png");
+}
+i.tab-user {
+  width: 32px;
+  height: 32px;
+  background-image: url("../images/user.png");
+}
+.tab-link-active i.tab-user {
+  background-image: url("../images/user-active.png");
+}
+/* 编辑模式样式配置 */
+.edit-mode {
+  background-size: 16px 16px;
+  background-position: calc(100% - 4px) top;
+  background-repeat: no-repeat;
+}
+.edit-mode.add-btn {
+  background-image: url("../images/add.png");
+}
+.edit-mode.delete-btn {
+  background-image: url("../images/delete.png");
+}
+/* 卡片选择样式配置 */
+.card.checked {
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 8px) 8px;
+  background-image: url("../images/checked.png");
+  background-color: rgba(var(--f7-color-blue-rgb), 0.15);
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-out;
+}
+/*# sourceMappingURL=demo.css.map */
