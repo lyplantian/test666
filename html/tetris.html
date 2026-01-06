@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>俄罗斯方块小游戏</title>
+  <link rel="stylesheet" href="../css/tetris.css" />
+</head>
+<body>
+  <main class="tetris">
+    <section class="tetris__board">
+      <h1>俄罗斯方块</h1>
+      <canvas id="tetris" width="300" height="600" aria-label="俄罗斯方块游戏区域"></canvas>
+      <div class="tetris__controls">
+        <button id="start">开始</button>
+        <button id="pause">暂停</button>
+        <button id="reset">重开</button>
+      </div>
+      <p class="tetris__tips">方向键移动，↑旋转，空格键快速下落，P 键暂停。</p>
+    </section>
+    <aside class="tetris__panel">
+      <div class="panel__card">
+        <h2>下一个</h2>
+        <canvas id="next" width="120" height="120"></canvas>
+      </div>
+      <div class="panel__card">
+        <h2>得分</h2>
+        <p id="score">0</p>
+        <h2>消行</h2>
+        <p id="lines">0</p>
+        <h2>等级</h2>
+        <p id="level">1</p>
+      </div>
+    </aside>
+  </main>
+  <script src="../js/tetris.js"></script>
+</body>
+</html>
