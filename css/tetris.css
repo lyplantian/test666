@@ -1,0 +1,110 @@
+:root {
+  color-scheme: light;
+  font-family: "Segoe UI", "PingFang SC", "Microsoft Yahei", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #f8fafc;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tetris {
+  display: grid;
+  grid-template-columns: minmax(280px, 320px) 220px;
+  gap: 32px;
+  padding: 32px;
+  background: rgba(15, 23, 42, 0.75);
+  border-radius: 20px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.45);
+}
+
+.tetris__board h1 {
+  margin: 0 0 12px;
+  font-size: 28px;
+  letter-spacing: 2px;
+}
+
+canvas {
+  background: #0b1220;
+  border-radius: 12px;
+  border: 2px solid rgba(148, 163, 184, 0.4);
+  display: block;
+}
+
+.tetris__controls {
+  display: flex;
+  gap: 12px;
+  margin: 16px 0 8px;
+}
+
+button {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(56, 189, 248, 0.35);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.tetris__tips {
+  font-size: 12px;
+  color: #cbd5f5;
+  margin: 0;
+}
+
+.tetris__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.panel__card {
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.panel__card h2 {
+  margin: 8px 0 6px;
+  font-size: 16px;
+}
+
+.panel__card p {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .tetris {
+    grid-template-columns: 1fr;
+  }
+
+  .tetris__panel {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .panel__card {
+    flex: 1 1 160px;
+  }
+}
